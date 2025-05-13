@@ -1,0 +1,64 @@
+# 📦 Composer
+/vendor/
+composer.lock
+
+# ⚙️ PHP
+*.log
+*.cache
+*.tmp
+
+# 🧪 PHPUnit
+.phpunit.result.cache
+coverage/
+tests/_output/
+tests/_support/_generated/
+
+# ⚠️ Ошибки и логи
+/logs/
+*.log
+
+# 🐳 Docker
+*.env
+.env.*
+docker-compose.override.yml
+
+# 📂 IDE и системные файлы
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# 🚀 Развёртывание и билд
+/build/
+node_modules/
+dist/
+public/build/
+public/storage/
+storage/*.key
+storage/*.log
+storage/framework/*
+storage/logs/*
+
+# 🧾 Twig/Blade кэш (если используется)
+/storage/views/*
+
+# 🧠 AI и временные файлы
+*.ai.json
+raw_ai_data/
+
+# 📷 Телеграм-фото и временные загрузки
+/tmp/
+temp/
+uploads/
+downloaded_images/
+
+# 🧪 e2e тесты (если появятся)
+playwright-report/
+test-results/
+
+# 📝 Отчёты и экспорт
+export/
+*.pdf
+*.csv
