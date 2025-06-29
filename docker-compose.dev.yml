@@ -1,0 +1,44 @@
+services:
+  nginx-proxy:
+    image:
+      myfitness-snap/nginx-proxy:dev
+
+  roadrunner-backend1:
+    # Строим образ и монтируем тома только в первом backend-сервисе
+    # Этот образ будет использоваться всеми backend-репликами
+    image:
+      myfitness-snap/roadrunner-backend:dev
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./phpunit.xml:/app/phpunit.xml
+      - ./coverage:/app/coverage
+      - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
+    environment:
+      - COMPOSER_HOME=/var/www/.composer
+
+  roadrunner-backend2:
+    image:
+      myfitness-snap/roadrunner-backend:dev
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/vue.dev.Dockerfile
+    image:
+      myfitness-snap/vue-frontend:dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5175:5173"
+
+  postgres:
+    env_file:
+      - env/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-myfitness-data:/var/lib/postgresql/data
+
+
