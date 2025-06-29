@@ -1,0 +1,31 @@
+services:
+  nginx-proxy:
+    image:
+      vlavlamat/nginx-proxy-myfitness:prod
+    restart: always
+
+  roadrunner-backend1:
+    image:
+      vlavlamat/roadrunner-backend-myfitness:prod
+    restart: always
+    env_file:
+      - env/.env.prod
+
+  roadrunner-backend2:
+    image:
+      vlavlamat/roadrunner-backend-myfitness:prod
+    restart: always
+    env_file:
+      - env/.env.prod
+
+  frontend:
+    image:
+      vlavlamat/vue-frontend-myfitness:prod
+    restart: always
+
+  postgres:
+    image:
+      vlavlamat/postgres-myfitness:prod
+    restart: always
+    env_file:
+      - env/.env.prod

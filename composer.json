@@ -1,0 +1,36 @@
+{
+  "name": "vlavlamat/mafitness-snap",
+  "version": "1.0.0",
+  "description": "MyFitnessSnap — Telegram AI Food Tracker",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Vladimir Matkovskii",
+      "email": "vlavlamat@icloud.com"
+    }
+  ],
+  "require": {
+    "php": "^8.4",
+    "ext-json": "*",
+    "ext-redis": "*",
+    "spiral/roadrunner-worker": "^3.6",
+    "spiral/roadrunner-http": "^3.0",
+    "nyholm/psr7": "^1.8",
+    "psr/http-message": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.0"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

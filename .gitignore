@@ -1,28 +1,26 @@
-# 📦 Composer
+# Composer
 /vendor/
 composer.lock
 
-# ⚙️ PHP
+# PHP
 *.log
 *.cache
 *.tmp
 
-# 🧪 PHPUnit
+# PHPUnit
 .phpunit.result.cache
 coverage/
 tests/_output/
 tests/_support/_generated/
 
-# ⚠️ Ошибки и логи
+# Ошибки и логи
 /logs/
-*.log
 
-# 🐳 Docker
+# Docker
 *.env
-.env.*
-docker-compose.override.yml
+env/.env.prod
 
-# 📂 IDE и системные файлы
+# IDE и системные файлы
 .idea/
 .vscode/
 *.sublime-project
@@ -30,7 +28,7 @@ docker-compose.override.yml
 .DS_Store
 Thumbs.db
 
-# 🚀 Развёртывание и билд
+# Развёртывание и билд
 /build/
 node_modules/
 dist/
@@ -41,24 +39,43 @@ storage/*.log
 storage/framework/*
 storage/logs/*
 
-# 🧾 Twig/Blade кэш (если используется)
+# Twig/Blade кэш (если используется)
 /storage/views/*
 
-# 🧠 AI и временные файлы
+# AI и временные файлы
 *.ai.json
 raw_ai_data/
 
-# 📷 Телеграм-фото и временные загрузки
+# Телеграм-фото и временные загрузки
 /tmp/
 temp/
 uploads/
 downloaded_images/
 
-# 🧪 e2e тесты (если появятся)
+# e2e тесты (если появятся)
 playwright-report/
 test-results/
 
-# 📝 Отчёты и экспорт
+# Отчёты и экспорт
 export/
 *.pdf
 *.csv
+
+# RoadRunner
+.rr.yaml.local
+.rr.yml.local
+rr.db
+*.rr.pid
+rr
+rr.exe
+roadrunner
+roadrunner.exe
+
+# RoadRunner логи и метрики
+*.rr.log
+rr.log
+metrics.txt
+
+# Кэш и runtime RoadRunner
+.rr/
+runtime/

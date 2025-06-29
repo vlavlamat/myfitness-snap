@@ -1,0 +1,66 @@
+services:
+  nginx-proxy:
+    build:
+      context: .
+      dockerfile:
+        docker/proxy/proxy.Dockerfile
+    depends_on:
+      - roadrunner-backend1
+      - roadrunner-backend2
+      - frontend
+      - postgres
+    ports:
+      - "8030:80"
+    networks:
+      - myfitness-snap
+    container_name:
+      nginx-proxy-myfitness
+
+  roadrunner-backend1:
+    build:
+      context: .
+      dockerfile:
+        docker/backend/backend.Dockerfile
+    networks:
+      - myfitness-snap
+    container_name:
+      roadrunner-backend1-myfitness
+
+  roadrunner-backend2:
+    build:
+      context: .
+      dockerfile:
+        docker/backend/backend.Dockerfile
+    networks:
+      - myfitness-snap
+    container_name:
+      roadrunner-backend2-myfitness
+
+  frontend:
+    build:
+      context: .
+      dockerfile:
+        docker/frontend/vue.prod.Dockerfile
+    networks:
+      - myfitness-snap
+    container_name:
+      vue-frontend-myfitness
+
+  postgres:
+    image: postgres:17
+    networks:
+      - myfitness-snap
+    container_name:
+      postgres-myfitness
+
+networks:
+  myfitness-snap:
+    driver: bridge
+
+  redis-cluster-net:
+    external: true
+
+volumes:
+  postgres-myfitness-data:
+
+
