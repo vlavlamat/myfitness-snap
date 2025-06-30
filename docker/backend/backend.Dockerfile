@@ -1,13 +1,14 @@
 FROM php:8.4-cli-alpine
 
 # Устанавливаем нужные пакеты
-RUN apk add --no-cache unzip git curl zlib-dev autoconf linux-headers $PHPIZE_DEPS \
+RUN apk add --no-cache unzip git curl zlib-dev autoconf linux-headers postgresql-client postgresql-dev bash $PHPIZE_DEPS \
  && pecl install redis \
  && docker-php-ext-enable redis \
  && pecl install pcov \
  && docker-php-ext-enable pcov \
  && docker-php-ext-install sockets \
- && apk del linux-headers \
+ && docker-php-ext-install pdo pdo_pgsql pgsql \
+ && apk del linux-headers postgresql-dev \
  && apk del $PHPIZE_DEPS
 
 # apk --no-cache - установка пакетов без сохранения кеша, что уменьшает размер образа
@@ -65,8 +66,15 @@ COPY ./public /app/public
 COPY ./config /app/config
 COPY ./.rr.yml /app/.rr.yaml
 
+# Копируем и настраиваем entrypoint
+COPY ./docker/backend/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Открываем порт для RoadRunner HTTP сервера
 EXPOSE 8080
+
+# Устанавливаем entrypoint для миграций
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Запускаем RoadRunner
 CMD ["rr", "serve"]
