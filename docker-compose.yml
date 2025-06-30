@@ -59,8 +59,3 @@ networks:
 
   redis-cluster-net:
     external: true
-
-volumes:
-  postgres-myfitness-data:
-
-

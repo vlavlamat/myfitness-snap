@@ -16,10 +16,14 @@ services:
       - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
     environment:
       - COMPOSER_HOME=/var/www/.composer
+    env_file:
+      - env/.env
 
   roadrunner-backend2:
     image:
       myfitness-snap/roadrunner-backend:dev
+    env_file:
+      - env/.env
 
   frontend:
     build:
@@ -41,4 +45,5 @@ services:
     volumes:
       - postgres-myfitness-data:/var/lib/postgresql/data
 
-
+volumes:
+  postgres-myfitness-data:

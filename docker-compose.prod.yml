@@ -3,6 +3,11 @@ services:
     image:
       vlavlamat/nginx-proxy-myfitness:prod
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   roadrunner-backend1:
     image:
@@ -10,6 +15,11 @@ services:
     restart: always
     env_file:
       - env/.env.prod
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
 
   roadrunner-backend2:
     image:
@@ -17,15 +27,33 @@ services:
     restart: always
     env_file:
       - env/.env.prod
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
 
   frontend:
     image:
       vlavlamat/vue-frontend-myfitness:prod
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
   postgres:
-    image:
-      vlavlamat/postgres-myfitness:prod
     restart: always
     env_file:
       - env/.env.prod
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+    volumes:
+      # Локальный путь для тестирования (вне проекта)
+      - ~/WorkSpace/projects_dbs/myfitness-local-prod:/var/lib/postgresql/data
+      # Для сервера (будет в отдельной ветке):
+      # - /srv/postgres/myfitnesssnap/data:/var/lib/postgresql/data
