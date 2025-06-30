@@ -70,7 +70,7 @@ $ git clone https://github.com/yourname/myfitnesssnap.git
 $ cd myfitnesssnap
 
 # Создаём .env файл
-$ cp .env.example .env
+$ cp .env.prod.example .env
 # Заполняем переменные: TELEGRAM_TOKEN, OPENAI_API_KEY и т.д.
 
 # Поднимаем окружение

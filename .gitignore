@@ -17,8 +17,10 @@ tests/_support/_generated/
 /logs/
 
 # Docker
-*.env
+.env
 env/.env.prod
+!.env.prod.example
+!.env.dev.example
 
 # IDE и системные файлы
 .idea/
